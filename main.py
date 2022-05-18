@@ -15,5 +15,8 @@ googlenews.total_count()
 pesquisa_bolsonaro = googlenews.results()
 df_bolsonaro = pd.DataFrame(pesquisa_bolsonaro)
 
-# display(df_bolsonaro)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+
+display(df_bolsonaro)
 # print(df_bolsonaro.to_string())
