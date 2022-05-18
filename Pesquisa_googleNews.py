@@ -3,7 +3,7 @@ import sys
 
 
 def install(package):
-     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+   subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 install("GoogleNews")
 install("pandas")
@@ -31,9 +31,8 @@ def pesquisa_candidato(candidato):
 
     resultados_candidato = googlenews.results()
     for linha in resultados_candidato:
-         #Se você quer adicionar um dataframe do pandas use concat() em vez de append()
-        lista_candidato.concat(linha)
-
+         #Se você quer adicionar um dataframe do pandas use concat() em vez de append() 
+        lista_candidato.append(linha)
 
 pesquisa_candidato("Bolsonaro")
 pesquisa_candidato("Lula")
