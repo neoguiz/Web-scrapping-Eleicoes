@@ -15,21 +15,28 @@ import pandas as pd
 from IPython.display import display
 from pandasgui import show
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
+lista_candidato = []
+
 googlenews = GoogleNews()
 googlenews.set_lang('pt')
 googlenews.set_period('5d')
 
-googlenews.clear()
+def pesquisa_candidato(candidato):
 
-googlenews.search('Bolsonaro')
-googlenews.total_count()
+    googlenews.clear()
+    googlenews.search(candidato)
+    googlenews.total_count()
 
-pesquisa_bolsonaro = googlenews.results()
-df_bolsonaro = pd.DataFrame(pesquisa_bolsonaro)
+    resultados_candidato = googlenews.results()
+    for linha in resultados_candidato:
+         #Se você quer adicionar um dataframe do pandas use concat() em vez de append()
+        lista_candidato.concat(linha)
 
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', None)
 
-display(df_bolsonaro)
-gui = show(df_bolsonaro)
-# print(df_bolsonaro.to_string())
+pesquisa_candidato("Bolsonaro")
+pesquisa_candidato("Lula")
+
+df_candidato = pd.DataFrame(lista_candidato)
+gui = show(df_candidato)
